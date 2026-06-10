@@ -32,6 +32,10 @@ async function extrairTextoPDF(caminho) {
 
 async function carregarPDFs() {
   console.log('📚 Carregando PDFs...');
+  if (!fs.existsSync(PASTA_PDFS)) {
+    fs.mkdirSync(PASTA_PDFS);
+    console.log('📁 Pasta /pdfs criada.');
+  }
   const arquivos = fs.readdirSync(PASTA_PDFS).filter(f => f.toLowerCase().endsWith('.pdf'));
   if (arquivos.length === 0) { console.log('⚠️ Nenhum PDF encontrado'); return; }
   for (const arquivo of arquivos) {
